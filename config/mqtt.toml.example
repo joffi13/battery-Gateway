@@ -1,0 +1,8 @@
+[mqtt]
+host = "localhost"
+port = 1883
+username = ""
+password = ""
+base_topic = "battery-gateway"
+retain = false
+qos = 0

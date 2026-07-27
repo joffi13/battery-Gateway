@@ -4,12 +4,11 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from readers.replay import ReplayReader
-from decoders.seplos import SeplosDecoder
-from core.manager import BatteryManager
+from decoders.seplos import SeplosCANDecoder
 
 reader = ReplayReader("logs/test.log")
-decoder = SeplosDecoder()
-manager = BatteryManager()
+decoder = SeplosCANDecoder()
+decoded = 0
 
 while True:
 
@@ -18,6 +17,8 @@ while True:
     if frame is None:
         break
 
-    decoder.decode(frame, manager)
+    decoded += len(decoder.decode(frame))
 
+reader.close()
+assert decoded == 4
 print("DECODER TEST OK")

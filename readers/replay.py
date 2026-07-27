@@ -1,5 +1,6 @@
-from pathlib import Path
 import re
+from collections.abc import Iterator
+from pathlib import Path
 
 from core.frame import RawFrame
 from readers.base import Reader
@@ -42,7 +43,7 @@ class ReplayReader(Reader):
     def close(self) -> None:
         self.file.close()
 
-    def __iter__(self):
+    def __iter__(self) -> Iterator[RawFrame]:
         return self
 
     def __next__(self) -> RawFrame:

@@ -1,11 +1,9 @@
 from core.frame import RawFrame
-from core.manager import BatteryManager
 from core.snapshot import NormalizedMeasurement, Quality, RawReference
-from decoders.base import Decoder
 
 
 class SeplosCANDecoder:
-    source_id = "seplos_can"
+    source_id: str = "seplos_can"
 
     def decode(self, frame: RawFrame) -> tuple[NormalizedMeasurement, ...]:
         if frame.dlc != 8:
@@ -123,14 +121,3 @@ class SeplosCANDecoder:
             quality=quality,
             raw_reference=measurement.raw_reference,
         )
-
-
-class SeplosDecoder(Decoder):
-    """Compatibility wrapper for the earlier prototype tests."""
-
-    def decode(
-        self,
-        frame: RawFrame,
-        manager: BatteryManager,
-    ) -> bool:
-        return bool(SeplosCANDecoder().decode(frame))

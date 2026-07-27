@@ -1,0 +1,613 @@
+# Home Assistant package for battery-gateway MQTT API v1.
+#
+# This package is intentionally display-only. It consumes only public
+# battery-gateway MQTT topics and does not calculate battery values in
+# Home Assistant.
+#
+# Assumptions:
+# - MQTT base topic: battery-gateway
+# - Battery id: battery_01
+# - MQTT API: v1
+#
+# Missing in MQTT API v1:
+# - explicit availability/online topic
+# - cell minimum and maximum topics
+# - dynamic list of available temperature sensors
+
+mqtt:
+  sensor:
+    - name: Battery Gateway MQTT API Version
+      object_id: battery_gateway_mqtt_api_version
+      unique_id: battery_gateway_battery_01_mqtt_api_version
+      state_topic: "battery-gateway/battery_01/api/mqtt_api_version"
+      entity_category: diagnostic
+      icon: mdi:api
+      device:
+        identifiers:
+          - battery_gateway_battery_01
+        name: Battery Gateway battery_01
+        manufacturer: battery-gateway
+        model: MQTT API v1 Client
+
+    - name: Battery Gateway Manufacturer
+      object_id: battery_gateway_manufacturer
+      unique_id: battery_gateway_battery_01_manufacturer
+      state_topic: "battery-gateway/battery_01/meta/manufacturer"
+      entity_category: diagnostic
+      icon: mdi:factory
+      device:
+        identifiers:
+          - battery_gateway_battery_01
+
+    - name: Battery Gateway Model
+      object_id: battery_gateway_model
+      unique_id: battery_gateway_battery_01_model
+      state_topic: "battery-gateway/battery_01/meta/model"
+      entity_category: diagnostic
+      icon: mdi:identifier
+      device:
+        identifiers:
+          - battery_gateway_battery_01
+
+    - name: Battery Gateway Firmware
+      object_id: battery_gateway_firmware
+      unique_id: battery_gateway_battery_01_firmware
+      state_topic: "battery-gateway/battery_01/meta/firmware"
+      entity_category: diagnostic
+      icon: mdi:chip
+      device:
+        identifiers:
+          - battery_gateway_battery_01
+
+    - name: Battery Gateway Source
+      object_id: battery_gateway_source
+      unique_id: battery_gateway_battery_01_source
+      state_topic: "battery-gateway/battery_01/meta/source"
+      entity_category: diagnostic
+      icon: mdi:source-branch
+      device:
+        identifiers:
+          - battery_gateway_battery_01
+
+    - name: Battery Gateway Snapshot Timestamp
+      object_id: battery_gateway_snapshot_timestamp
+      unique_id: battery_gateway_battery_01_snapshot_timestamp
+      state_topic: "battery-gateway/battery_01/meta/snapshot_timestamp"
+      unit_of_measurement: s
+      state_class: measurement
+      entity_category: diagnostic
+      icon: mdi:clock-outline
+      device:
+        identifiers:
+          - battery_gateway_battery_01
+
+    - name: Battery Gateway Pack Voltage
+      object_id: battery_gateway_pack_voltage
+      unique_id: battery_gateway_battery_01_pack_voltage
+      state_topic: "battery-gateway/battery_01/pack/voltage"
+      unit_of_measurement: V
+      device_class: voltage
+      state_class: measurement
+      expire_after: 300
+      icon: mdi:sine-wave
+      device:
+        identifiers:
+          - battery_gateway_battery_01
+
+    - name: Battery Gateway Pack Current
+      object_id: battery_gateway_pack_current
+      unique_id: battery_gateway_battery_01_pack_current
+      state_topic: "battery-gateway/battery_01/pack/current"
+      unit_of_measurement: A
+      device_class: current
+      state_class: measurement
+      expire_after: 300
+      icon: mdi:current-dc
+      device:
+        identifiers:
+          - battery_gateway_battery_01
+
+    - name: Battery Gateway Pack Power
+      object_id: battery_gateway_pack_power
+      unique_id: battery_gateway_battery_01_pack_power
+      state_topic: "battery-gateway/battery_01/pack/power"
+      unit_of_measurement: W
+      device_class: power
+      state_class: measurement
+      expire_after: 300
+      icon: mdi:flash
+      device:
+        identifiers:
+          - battery_gateway_battery_01
+
+    - name: Battery Gateway SOC
+      object_id: battery_gateway_soc
+      unique_id: battery_gateway_battery_01_soc
+      state_topic: "battery-gateway/battery_01/pack/soc"
+      unit_of_measurement: "%"
+      device_class: battery
+      state_class: measurement
+      expire_after: 300
+      icon: mdi:battery
+      device:
+        identifiers:
+          - battery_gateway_battery_01
+
+    - name: Battery Gateway SOH
+      object_id: battery_gateway_soh
+      unique_id: battery_gateway_battery_01_soh
+      state_topic: "battery-gateway/battery_01/pack/soh"
+      unit_of_measurement: "%"
+      state_class: measurement
+      expire_after: 300
+      icon: mdi:battery-heart
+      device:
+        identifiers:
+          - battery_gateway_battery_01
+
+    - name: Battery Gateway Design Capacity
+      object_id: battery_gateway_design_capacity
+      unique_id: battery_gateway_battery_01_design_capacity
+      state_topic: "battery-gateway/battery_01/pack/design_capacity"
+      unit_of_measurement: Ah
+      state_class: measurement
+      expire_after: 300
+      icon: mdi:battery-high
+      entity_category: diagnostic
+      device:
+        identifiers:
+          - battery_gateway_battery_01
+
+    - name: Battery Gateway Remaining Capacity
+      object_id: battery_gateway_remaining_capacity
+      unique_id: battery_gateway_battery_01_remaining_capacity
+      state_topic: "battery-gateway/battery_01/pack/remaining_capacity"
+      unit_of_measurement: Ah
+      state_class: measurement
+      expire_after: 300
+      icon: mdi:battery-clock
+      device:
+        identifiers:
+          - battery_gateway_battery_01
+
+    - name: Battery Gateway Remaining Energy
+      object_id: battery_gateway_remaining_energy
+      unique_id: battery_gateway_battery_01_remaining_energy
+      state_topic: "battery-gateway/battery_01/pack/remaining_energy"
+      unit_of_measurement: Wh
+      device_class: energy
+      state_class: measurement
+      expire_after: 300
+      icon: mdi:lightning-bolt-circle
+      device:
+        identifiers:
+          - battery_gateway_battery_01
+
+    - name: Battery Gateway Charge State
+      object_id: battery_gateway_charge_state
+      unique_id: battery_gateway_battery_01_charge_state
+      state_topic: "battery-gateway/battery_01/status/charge_state"
+      expire_after: 300
+      icon: mdi:battery-sync
+      device:
+        identifiers:
+          - battery_gateway_battery_01
+
+    - name: Battery Gateway Cell Average Voltage
+      object_id: battery_gateway_cell_average_voltage
+      unique_id: battery_gateway_battery_01_cell_average_voltage
+      state_topic: "battery-gateway/battery_01/cells/average_voltage"
+      unit_of_measurement: V
+      device_class: voltage
+      state_class: measurement
+      expire_after: 300
+      icon: mdi:chart-bell-curve
+      device:
+        identifiers:
+          - battery_gateway_battery_01
+
+    - name: Battery Gateway Cell Delta Voltage
+      object_id: battery_gateway_cell_delta_voltage
+      unique_id: battery_gateway_battery_01_cell_delta_voltage
+      state_topic: "battery-gateway/battery_01/cells/delta_voltage"
+      unit_of_measurement: V
+      device_class: voltage
+      state_class: measurement
+      expire_after: 300
+      icon: mdi:delta
+      device:
+        identifiers:
+          - battery_gateway_battery_01
+
+    - name: Battery Gateway Temperature MOSFET
+      object_id: battery_gateway_temperature_mosfet
+      unique_id: battery_gateway_battery_01_temperature_mosfet
+      state_topic: "battery-gateway/battery_01/temperature/mosfet"
+      unit_of_measurement: "°C"
+      device_class: temperature
+      state_class: measurement
+      expire_after: 300
+      icon: mdi:thermometer-lines
+      device:
+        identifiers:
+          - battery_gateway_battery_01
+
+    - name: Battery Gateway Temperature Ambient
+      object_id: battery_gateway_temperature_ambient
+      unique_id: battery_gateway_battery_01_temperature_ambient
+      state_topic: "battery-gateway/battery_01/temperature/ambient"
+      unit_of_measurement: "°C"
+      device_class: temperature
+      state_class: measurement
+      expire_after: 300
+      icon: mdi:thermometer
+      device:
+        identifiers:
+          - battery_gateway_battery_01
+
+    - name: Battery Gateway Temperature Cell Average
+      object_id: battery_gateway_temperature_cell_average
+      unique_id: battery_gateway_battery_01_temperature_cell_average
+      state_topic: "battery-gateway/battery_01/temperature/cell_average"
+      unit_of_measurement: "°C"
+      device_class: temperature
+      state_class: measurement
+      expire_after: 300
+      icon: mdi:thermometer-check
+      device:
+        identifiers:
+          - battery_gateway_battery_01
+
+    - name: Battery Gateway Overall Quality
+      object_id: battery_gateway_quality_overall
+      unique_id: battery_gateway_battery_01_quality_overall
+      state_topic: "battery-gateway/battery_01/quality/overall"
+      entity_category: diagnostic
+      expire_after: 300
+      icon: mdi:shield-check
+      device:
+        identifiers:
+          - battery_gateway_battery_01
+
+    - name: Battery Gateway Pack Voltage Quality
+      object_id: battery_gateway_pack_voltage_quality
+      unique_id: battery_gateway_battery_01_pack_voltage_quality
+      state_topic: "battery-gateway/battery_01/pack/voltage/quality"
+      entity_category: diagnostic
+      expire_after: 300
+      icon: mdi:alert-circle-outline
+      device:
+        identifiers:
+          - battery_gateway_battery_01
+
+    - name: Battery Gateway Pack Current Quality
+      object_id: battery_gateway_pack_current_quality
+      unique_id: battery_gateway_battery_01_pack_current_quality
+      state_topic: "battery-gateway/battery_01/pack/current/quality"
+      entity_category: diagnostic
+      expire_after: 300
+      icon: mdi:alert-circle-outline
+      device:
+        identifiers:
+          - battery_gateway_battery_01
+
+    - name: Battery Gateway Pack Power Quality
+      object_id: battery_gateway_pack_power_quality
+      unique_id: battery_gateway_battery_01_pack_power_quality
+      state_topic: "battery-gateway/battery_01/pack/power/quality"
+      entity_category: diagnostic
+      expire_after: 300
+      icon: mdi:alert-circle-outline
+      device:
+        identifiers:
+          - battery_gateway_battery_01
+
+    - name: Battery Gateway SOC Quality
+      object_id: battery_gateway_soc_quality
+      unique_id: battery_gateway_battery_01_soc_quality
+      state_topic: "battery-gateway/battery_01/pack/soc/quality"
+      entity_category: diagnostic
+      expire_after: 300
+      icon: mdi:alert-circle-outline
+      device:
+        identifiers:
+          - battery_gateway_battery_01
+
+    - name: Battery Gateway SOH Quality
+      object_id: battery_gateway_soh_quality
+      unique_id: battery_gateway_battery_01_soh_quality
+      state_topic: "battery-gateway/battery_01/pack/soh/quality"
+      entity_category: diagnostic
+      expire_after: 300
+      icon: mdi:alert-circle-outline
+      device:
+        identifiers:
+          - battery_gateway_battery_01
+
+    - name: Battery Gateway Cell Average Voltage Quality
+      object_id: battery_gateway_cell_average_voltage_quality
+      unique_id: battery_gateway_battery_01_cell_average_voltage_quality
+      state_topic: "battery-gateway/battery_01/cells/average_voltage/quality"
+      entity_category: diagnostic
+      expire_after: 300
+      icon: mdi:alert-circle-outline
+      device:
+        identifiers:
+          - battery_gateway_battery_01
+
+    - name: Battery Gateway Cell Delta Voltage Quality
+      object_id: battery_gateway_cell_delta_voltage_quality
+      unique_id: battery_gateway_battery_01_cell_delta_voltage_quality
+      state_topic: "battery-gateway/battery_01/cells/delta_voltage/quality"
+      entity_category: diagnostic
+      expire_after: 300
+      icon: mdi:alert-circle-outline
+      device:
+        identifiers:
+          - battery_gateway_battery_01
+
+    - name: Battery Gateway Temperature MOSFET Quality
+      object_id: battery_gateway_temperature_mosfet_quality
+      unique_id: battery_gateway_battery_01_temperature_mosfet_quality
+      state_topic: "battery-gateway/battery_01/temperature/mosfet/quality"
+      entity_category: diagnostic
+      expire_after: 300
+      icon: mdi:alert-circle-outline
+      device:
+        identifiers:
+          - battery_gateway_battery_01
+
+    - name: Battery Gateway Temperature Ambient Quality
+      object_id: battery_gateway_temperature_ambient_quality
+      unique_id: battery_gateway_battery_01_temperature_ambient_quality
+      state_topic: "battery-gateway/battery_01/temperature/ambient/quality"
+      entity_category: diagnostic
+      expire_after: 300
+      icon: mdi:alert-circle-outline
+      device:
+        identifiers:
+          - battery_gateway_battery_01
+
+    - name: Battery Gateway Temperature Cell Average Quality
+      object_id: battery_gateway_temperature_cell_average_quality
+      unique_id: battery_gateway_battery_01_temperature_cell_average_quality
+      state_topic: "battery-gateway/battery_01/temperature/cell_average/quality"
+      entity_category: diagnostic
+      expire_after: 300
+      icon: mdi:alert-circle-outline
+      device:
+        identifiers:
+          - battery_gateway_battery_01
+
+    - name: Battery Gateway Cell 01 Voltage
+      object_id: battery_gateway_cell_01_voltage
+      unique_id: battery_gateway_battery_01_cell_01_voltage
+      state_topic: "battery-gateway/battery_01/cells/1/voltage"
+      unit_of_measurement: V
+      device_class: voltage
+      state_class: measurement
+      expire_after: 300
+      icon: mdi:battery-outline
+      device:
+        identifiers:
+          - battery_gateway_battery_01
+
+    - name: Battery Gateway Cell 02 Voltage
+      object_id: battery_gateway_cell_02_voltage
+      unique_id: battery_gateway_battery_01_cell_02_voltage
+      state_topic: "battery-gateway/battery_01/cells/2/voltage"
+      unit_of_measurement: V
+      device_class: voltage
+      state_class: measurement
+      expire_after: 300
+      icon: mdi:battery-outline
+      device:
+        identifiers:
+          - battery_gateway_battery_01
+
+    - name: Battery Gateway Cell 03 Voltage
+      object_id: battery_gateway_cell_03_voltage
+      unique_id: battery_gateway_battery_01_cell_03_voltage
+      state_topic: "battery-gateway/battery_01/cells/3/voltage"
+      unit_of_measurement: V
+      device_class: voltage
+      state_class: measurement
+      expire_after: 300
+      icon: mdi:battery-outline
+      device:
+        identifiers:
+          - battery_gateway_battery_01
+
+    - name: Battery Gateway Cell 04 Voltage
+      object_id: battery_gateway_cell_04_voltage
+      unique_id: battery_gateway_battery_01_cell_04_voltage
+      state_topic: "battery-gateway/battery_01/cells/4/voltage"
+      unit_of_measurement: V
+      device_class: voltage
+      state_class: measurement
+      expire_after: 300
+      icon: mdi:battery-outline
+      device:
+        identifiers:
+          - battery_gateway_battery_01
+
+    - name: Battery Gateway Cell 05 Voltage
+      object_id: battery_gateway_cell_05_voltage
+      unique_id: battery_gateway_battery_01_cell_05_voltage
+      state_topic: "battery-gateway/battery_01/cells/5/voltage"
+      unit_of_measurement: V
+      device_class: voltage
+      state_class: measurement
+      expire_after: 300
+      icon: mdi:battery-outline
+      device:
+        identifiers:
+          - battery_gateway_battery_01
+
+    - name: Battery Gateway Cell 06 Voltage
+      object_id: battery_gateway_cell_06_voltage
+      unique_id: battery_gateway_battery_01_cell_06_voltage
+      state_topic: "battery-gateway/battery_01/cells/6/voltage"
+      unit_of_measurement: V
+      device_class: voltage
+      state_class: measurement
+      expire_after: 300
+      icon: mdi:battery-outline
+      device:
+        identifiers:
+          - battery_gateway_battery_01
+
+    - name: Battery Gateway Cell 07 Voltage
+      object_id: battery_gateway_cell_07_voltage
+      unique_id: battery_gateway_battery_01_cell_07_voltage
+      state_topic: "battery-gateway/battery_01/cells/7/voltage"
+      unit_of_measurement: V
+      device_class: voltage
+      state_class: measurement
+      expire_after: 300
+      icon: mdi:battery-outline
+      device:
+        identifiers:
+          - battery_gateway_battery_01
+
+    - name: Battery Gateway Cell 08 Voltage
+      object_id: battery_gateway_cell_08_voltage
+      unique_id: battery_gateway_battery_01_cell_08_voltage
+      state_topic: "battery-gateway/battery_01/cells/8/voltage"
+      unit_of_measurement: V
+      device_class: voltage
+      state_class: measurement
+      expire_after: 300
+      icon: mdi:battery-outline
+      device:
+        identifiers:
+          - battery_gateway_battery_01
+
+    - name: Battery Gateway Cell 09 Voltage
+      object_id: battery_gateway_cell_09_voltage
+      unique_id: battery_gateway_battery_01_cell_09_voltage
+      state_topic: "battery-gateway/battery_01/cells/9/voltage"
+      unit_of_measurement: V
+      device_class: voltage
+      state_class: measurement
+      expire_after: 300
+      icon: mdi:battery-outline
+      device:
+        identifiers:
+          - battery_gateway_battery_01
+
+    - name: Battery Gateway Cell 10 Voltage
+      object_id: battery_gateway_cell_10_voltage
+      unique_id: battery_gateway_battery_01_cell_10_voltage
+      state_topic: "battery-gateway/battery_01/cells/10/voltage"
+      unit_of_measurement: V
+      device_class: voltage
+      state_class: measurement
+      expire_after: 300
+      icon: mdi:battery-outline
+      device:
+        identifiers:
+          - battery_gateway_battery_01
+
+    - name: Battery Gateway Cell 11 Voltage
+      object_id: battery_gateway_cell_11_voltage
+      unique_id: battery_gateway_battery_01_cell_11_voltage
+      state_topic: "battery-gateway/battery_01/cells/11/voltage"
+      unit_of_measurement: V
+      device_class: voltage
+      state_class: measurement
+      expire_after: 300
+      icon: mdi:battery-outline
+      device:
+        identifiers:
+          - battery_gateway_battery_01
+
+    - name: Battery Gateway Cell 12 Voltage
+      object_id: battery_gateway_cell_12_voltage
+      unique_id: battery_gateway_battery_01_cell_12_voltage
+      state_topic: "battery-gateway/battery_01/cells/12/voltage"
+      unit_of_measurement: V
+      device_class: voltage
+      state_class: measurement
+      expire_after: 300
+      icon: mdi:battery-outline
+      device:
+        identifiers:
+          - battery_gateway_battery_01
+
+    - name: Battery Gateway Cell 13 Voltage
+      object_id: battery_gateway_cell_13_voltage
+      unique_id: battery_gateway_battery_01_cell_13_voltage
+      state_topic: "battery-gateway/battery_01/cells/13/voltage"
+      unit_of_measurement: V
+      device_class: voltage
+      state_class: measurement
+      expire_after: 300
+      icon: mdi:battery-outline
+      device:
+        identifiers:
+          - battery_gateway_battery_01
+
+    - name: Battery Gateway Cell 14 Voltage
+      object_id: battery_gateway_cell_14_voltage
+      unique_id: battery_gateway_battery_01_cell_14_voltage
+      state_topic: "battery-gateway/battery_01/cells/14/voltage"
+      unit_of_measurement: V
+      device_class: voltage
+      state_class: measurement
+      expire_after: 300
+      icon: mdi:battery-outline
+      device:
+        identifiers:
+          - battery_gateway_battery_01
+
+    - name: Battery Gateway Cell 15 Voltage
+      object_id: battery_gateway_cell_15_voltage
+      unique_id: battery_gateway_battery_01_cell_15_voltage
+      state_topic: "battery-gateway/battery_01/cells/15/voltage"
+      unit_of_measurement: V
+      device_class: voltage
+      state_class: measurement
+      expire_after: 300
+      icon: mdi:battery-outline
+      device:
+        identifiers:
+          - battery_gateway_battery_01
+
+    - name: Battery Gateway Cell 16 Voltage
+      object_id: battery_gateway_cell_16_voltage
+      unique_id: battery_gateway_battery_01_cell_16_voltage
+      state_topic: "battery-gateway/battery_01/cells/16/voltage"
+      unit_of_measurement: V
+      device_class: voltage
+      state_class: measurement
+      expire_after: 300
+      icon: mdi:battery-outline
+      device:
+        identifiers:
+          - battery_gateway_battery_01
+
+  binary_sensor:
+    - name: Battery Gateway Charging
+      object_id: battery_gateway_charging
+      unique_id: battery_gateway_battery_01_charging
+      state_topic: "battery-gateway/battery_01/status/charging"
+      payload_on: "true"
+      payload_off: "false"
+      expire_after: 300
+      icon: mdi:battery-arrow-up
+      device:
+        identifiers:
+          - battery_gateway_battery_01
+
+    - name: Battery Gateway Discharging
+      object_id: battery_gateway_discharging
+      unique_id: battery_gateway_battery_01_discharging
+      state_topic: "battery-gateway/battery_01/status/discharging"
+      payload_on: "true"
+      payload_off: "false"
+      expire_after: 300
+      icon: mdi:battery-arrow-down
+      device:
+        identifiers:
+          - battery_gateway_battery_01

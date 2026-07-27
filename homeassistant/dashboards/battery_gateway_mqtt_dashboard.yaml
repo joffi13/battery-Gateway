@@ -1,0 +1,282 @@
+title: Battery Gateway MQTT
+views:
+  - title: Battery
+    path: battery-gateway-mqtt
+    icon: mdi:battery-sync
+    type: sections
+    max_columns: 4
+    badges:
+      - type: entity
+        entity: sensor.battery_gateway_soc
+        show_name: true
+        show_state: true
+        color: green
+      - type: entity
+        entity: sensor.battery_gateway_pack_power
+        show_name: true
+        show_state: true
+        color: amber
+      - type: entity
+        entity: sensor.battery_gateway_quality_overall
+        show_name: true
+        show_state: true
+        color: blue
+    sections:
+      - type: grid
+        cards:
+          - type: heading
+            heading: Pack
+            heading_style: title
+            icon: mdi:battery
+          - type: tile
+            entity: sensor.battery_gateway_pack_voltage
+            name: Spannung
+            grid_options:
+              columns: 6
+          - type: tile
+            entity: sensor.battery_gateway_pack_current
+            name: Strom
+            grid_options:
+              columns: 6
+          - type: tile
+            entity: sensor.battery_gateway_pack_power
+            name: Leistung
+            grid_options:
+              columns: 6
+          - type: tile
+            entity: sensor.battery_gateway_soc
+            name: SOC
+            features:
+              - type: bar-gauge
+                min: 0
+                max: 100
+            grid_options:
+              columns: 6
+          - type: tile
+            entity: sensor.battery_gateway_soh
+            name: SOH
+            grid_options:
+              columns: 6
+          - type: tile
+            entity: sensor.battery_gateway_remaining_capacity
+            name: Restkapazitaet
+            grid_options:
+              columns: 6
+          - type: tile
+            entity: sensor.battery_gateway_remaining_energy
+            name: Restenergie
+            grid_options:
+              columns: 6
+          - type: tile
+            entity: sensor.battery_gateway_design_capacity
+            name: Design Capacity
+            grid_options:
+              columns: 6
+
+      - type: grid
+        cards:
+          - type: heading
+            heading: Status
+            heading_style: title
+            icon: mdi:list-status
+          - type: tile
+            entity: sensor.battery_gateway_charge_state
+            name: Charge State
+            grid_options:
+              columns: 12
+          - type: tile
+            entity: binary_sensor.battery_gateway_charging
+            name: Charging
+            grid_options:
+              columns: 6
+          - type: tile
+            entity: binary_sensor.battery_gateway_discharging
+            name: Discharging
+            grid_options:
+              columns: 6
+          - type: heading
+            heading: Metadaten
+            heading_style: subtitle
+            icon: mdi:information-outline
+          - type: entities
+            show_header_toggle: false
+            entities:
+              - entity: sensor.battery_gateway_manufacturer
+                name: Hersteller
+              - entity: sensor.battery_gateway_model
+                name: Modell
+              - entity: sensor.battery_gateway_firmware
+                name: Firmware
+              - entity: sensor.battery_gateway_mqtt_api_version
+                name: MQTT API
+              - entity: sensor.battery_gateway_snapshot_timestamp
+                name: Snapshot Timestamp
+              - entity: sensor.battery_gateway_source
+                name: Source
+
+      - type: grid
+        column_span: 2
+        cards:
+          - type: heading
+            heading: Cells
+            heading_style: title
+            icon: mdi:battery-medium
+          - type: tile
+            entity: sensor.battery_gateway_cell_average_voltage
+            name: Durchschnitt
+            grid_options:
+              columns: 6
+          - type: tile
+            entity: sensor.battery_gateway_cell_delta_voltage
+            name: Delta
+            grid_options:
+              columns: 6
+          - type: markdown
+            content: "Cell-Minimum und Cell-Maximum sind in MQTT API v1 nicht als eigene Topics definiert."
+            grid_options:
+              columns: full
+          - type: tile
+            entity: sensor.battery_gateway_cell_01_voltage
+            name: Cell 01
+            grid_options:
+              columns: 6
+          - type: tile
+            entity: sensor.battery_gateway_cell_02_voltage
+            name: Cell 02
+            grid_options:
+              columns: 6
+          - type: tile
+            entity: sensor.battery_gateway_cell_03_voltage
+            name: Cell 03
+            grid_options:
+              columns: 6
+          - type: tile
+            entity: sensor.battery_gateway_cell_04_voltage
+            name: Cell 04
+            grid_options:
+              columns: 6
+          - type: tile
+            entity: sensor.battery_gateway_cell_05_voltage
+            name: Cell 05
+            grid_options:
+              columns: 6
+          - type: tile
+            entity: sensor.battery_gateway_cell_06_voltage
+            name: Cell 06
+            grid_options:
+              columns: 6
+          - type: tile
+            entity: sensor.battery_gateway_cell_07_voltage
+            name: Cell 07
+            grid_options:
+              columns: 6
+          - type: tile
+            entity: sensor.battery_gateway_cell_08_voltage
+            name: Cell 08
+            grid_options:
+              columns: 6
+          - type: tile
+            entity: sensor.battery_gateway_cell_09_voltage
+            name: Cell 09
+            grid_options:
+              columns: 6
+          - type: tile
+            entity: sensor.battery_gateway_cell_10_voltage
+            name: Cell 10
+            grid_options:
+              columns: 6
+          - type: tile
+            entity: sensor.battery_gateway_cell_11_voltage
+            name: Cell 11
+            grid_options:
+              columns: 6
+          - type: tile
+            entity: sensor.battery_gateway_cell_12_voltage
+            name: Cell 12
+            grid_options:
+              columns: 6
+          - type: tile
+            entity: sensor.battery_gateway_cell_13_voltage
+            name: Cell 13
+            grid_options:
+              columns: 6
+          - type: tile
+            entity: sensor.battery_gateway_cell_14_voltage
+            name: Cell 14
+            grid_options:
+              columns: 6
+          - type: tile
+            entity: sensor.battery_gateway_cell_15_voltage
+            name: Cell 15
+            grid_options:
+              columns: 6
+          - type: tile
+            entity: sensor.battery_gateway_cell_16_voltage
+            name: Cell 16
+            grid_options:
+              columns: 6
+
+      - type: grid
+        cards:
+          - type: heading
+            heading: Temperaturen
+            heading_style: title
+            icon: mdi:thermometer
+          - type: tile
+            entity: sensor.battery_gateway_temperature_mosfet
+            name: MOSFET
+            grid_options:
+              columns: 6
+          - type: tile
+            entity: sensor.battery_gateway_temperature_ambient
+            name: Ambient
+            grid_options:
+              columns: 6
+          - type: tile
+            entity: sensor.battery_gateway_temperature_cell_average
+            name: Cell Average
+            grid_options:
+              columns: 12
+          - type: markdown
+            content: "Weitere Temperaturkanaele sind in MQTT API v1 nicht aufzaehlbar. Dafuer fehlt ein Topic-Index oder Discovery."
+            grid_options:
+              columns: full
+
+      - type: grid
+        cards:
+          - type: heading
+            heading: Quality
+            heading_style: title
+            icon: mdi:shield-alert
+          - type: tile
+            entity: sensor.battery_gateway_quality_overall
+            name: Overall
+            grid_options:
+              columns: 12
+          - type: entity-filter
+            state_filter:
+              - suspect
+              - invalid
+              - missing
+              - estimated
+              - sentinel
+              - stale
+              - unknown
+            entities:
+              - sensor.battery_gateway_pack_voltage_quality
+              - sensor.battery_gateway_pack_current_quality
+              - sensor.battery_gateway_pack_power_quality
+              - sensor.battery_gateway_soc_quality
+              - sensor.battery_gateway_soh_quality
+              - sensor.battery_gateway_cell_average_voltage_quality
+              - sensor.battery_gateway_cell_delta_voltage_quality
+              - sensor.battery_gateway_temperature_mosfet_quality
+              - sensor.battery_gateway_temperature_ambient_quality
+              - sensor.battery_gateway_temperature_cell_average_quality
+            card:
+              type: entities
+              title: Auffaellige Werte
+              show_header_toggle: false
+            show_empty: true
+            grid_options:
+              columns: full

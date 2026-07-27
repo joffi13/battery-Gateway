@@ -1,10 +1,10 @@
 from abc import ABC, abstractmethod
 
-from core.frame import Frame
+from core.frame import RawFrame
 
 
 class Reader(ABC):
 
     @abstractmethod
-    def read(self) -> Frame | None:
+    def read(self) -> RawFrame | None:
         pass

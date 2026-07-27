@@ -1,18 +1,10 @@
-#!/usr/bin/env python3
-"""
-Battery Gateway
-
-Universelles Frame-Objekt
-Herstellerunabhängig
-"""
-
 from dataclasses import dataclass, field
 from typing import Optional
 import time
 
 
-@dataclass(slots=True)
-class Frame:
+@dataclass(frozen=True, slots=True)
+class RawFrame:
     bus: str
     identifier: int
     data: bytes
@@ -40,3 +32,19 @@ class Frame:
             f"[{self.dlc}]  "
             f"{self.hex()}"
         )
+
+    def to_dict(self) -> dict[str, object]:
+        return {
+            "timestamp": self.timestamp,
+            "bus": self.bus,
+            "identifier": f"0x{self.identifier:X}",
+            "data": self.data.hex().upper(),
+            "dlc": self.dlc,
+            "direction": self.direction,
+            "sequence": self.sequence,
+            "crc_ok": self.crc_ok,
+            "comment": self.comment,
+        }
+
+
+Frame = RawFrame

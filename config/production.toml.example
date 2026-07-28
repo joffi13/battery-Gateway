@@ -1,0 +1,30 @@
+[gateway]
+can_interface = "can0"
+battery_id = "battery_01"
+publish_interval_s = 5.0
+status_interval_s = 10.0
+
+[[ble.devices]]
+device_id = "BP00"
+battery_id = "battery_01"
+address = "60:6E:41:26:E6:81"
+enabled = false
+poll_interval_s = 30.0
+reconnect_delay_s = 5.0
+scan_timeout_s = 12.0
+
+# Add future devices without changing code:
+# [[ble.devices]]
+# device_id = "BP01"
+# battery_id = "battery_02"
+# address = "10:23:81:10:4D:50"
+# enabled = false
+
+[mqtt]
+host = "192.168.1.52"
+port = 1883
+username = "mqtt"
+password = ""
+base_topic = "battery-gateway"
+retain = true
+qos = 0

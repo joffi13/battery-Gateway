@@ -75,6 +75,27 @@ The project uses the Python standard library test runner:
 python3 -m unittest discover -s tests
 ```
 
+## Versioning
+
+The current Battery Gateway software version is read exclusively from
+[`VERSION`](VERSION). Release history is recorded in
+[`CHANGELOG.md`](CHANGELOG.md), and the Semantic Versioning and Git-tag process
+is documented in [`docs/versioning.md`](docs/versioning.md).
+
+The software version and public MQTT API version are independent. Runtime
+publishers expose them as:
+
+```text
+battery-gateway/<battery_id>/meta/gateway_version
+battery-gateway/<battery_id>/api/mqtt_api_version
+```
+
+The reasoning behind the middleware, immutable snapshots, Derived Engine, and
+public MQTT API is preserved in [`docs/history.md`](docs/history.md).
+
+Production service operation, diagnostics, and the sub-minute legacy rollback
+are documented in [`docs/operations.md`](docs/operations.md).
+
 Current analyzer tests cover:
 
 - empty input

@@ -54,6 +54,11 @@ class SeplosCANDecoder:
                 ),
             )
 
+        if frame.identifier == 0x379:
+            return (
+                self._u16(frame, "battery.design_capacity", "Ah", 0, 1),
+            )
+
         return ()
 
     def _u16(

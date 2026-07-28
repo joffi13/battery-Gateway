@@ -68,11 +68,23 @@ class MQTTPublisherTests(unittest.TestCase):
         messages = publisher.messages_for(enriched)
         topics = {message.topic: message.payload for message in messages}
 
+        self.assertEqual(
+            topics["battery-gateway/battery_01/api/mqtt_api_version"],
+            "1",
+        )
+        self.assertEqual(
+            topics["battery-gateway/battery_01/meta/gateway_version"],
+            "0.1.0",
+        )
         self.assertEqual(topics["battery-gateway/battery_01/pack/voltage"], "52.0")
         self.assertEqual(topics["battery-gateway/battery_01/pack/current"], "2.0")
         self.assertEqual(topics["battery-gateway/battery_01/pack/power"], "104.0")
         self.assertEqual(topics["battery-gateway/battery_01/pack/soc"], "80.0")
         self.assertEqual(topics["battery-gateway/battery_01/pack/soh"], "99.0")
+        self.assertEqual(
+            topics["battery-gateway/battery_01/pack/design_capacity"],
+            "100.0",
+        )
         self.assertEqual(
             topics["battery-gateway/battery_01/pack/remaining_capacity"],
             "80.0",
@@ -85,9 +97,9 @@ class MQTTPublisherTests(unittest.TestCase):
             topics["battery-gateway/battery_01/status/charge_state"],
             "charging",
         )
-        self.assertEqual(
-            topics["battery-gateway/battery_01/status/discharge_state"],
-            "charging",
+        self.assertNotIn(
+            "battery-gateway/battery_01/status/discharge_state",
+            topics,
         )
         self.assertEqual(topics["battery-gateway/battery_01/status/charging"], "true")
         self.assertEqual(
@@ -95,6 +107,42 @@ class MQTTPublisherTests(unittest.TestCase):
             "false",
         )
         self.assertEqual(topics["battery-gateway/battery_01/meta/source"], "test_source")
+
+    def test_cell_average_voltage_uses_cells_group(self) -> None:
+        from core.snapshot import Cell
+
+        snapshot = BatterySnapshot(
+            snapshot_id="s1",
+            battery_id="battery_01",
+            timestamp=1.0,
+            cells=(
+                Cell(index=1, voltage=measurement("cell.voltage", 3.2, "V")),
+                Cell(index=2, voltage=measurement("cell.voltage", 3.4, "V")),
+            ),
+        )
+        topics = {
+            message.topic: message.payload
+            for message in MQTTPublisher(
+                MQTTPublisherConfig(host="localhost")
+            ).messages_for(DerivedEngine().enrich(snapshot))
+        }
+
+        self.assertEqual(
+            topics["battery-gateway/battery_01/cells/average_voltage"],
+            "3.3",
+        )
+        self.assertEqual(
+            topics["battery-gateway/battery_01/cells/min_voltage"],
+            "3.2",
+        )
+        self.assertEqual(
+            topics["battery-gateway/battery_01/cells/max_voltage"],
+            "3.4",
+        )
+        self.assertNotIn(
+            "battery-gateway/battery_01/temperature/cell_average",
+            topics,
+        )
 
     def test_quality_topics_are_published_for_non_valid_values(self) -> None:
         snapshot = BatterySnapshot(

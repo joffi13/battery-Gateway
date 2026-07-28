@@ -440,6 +440,11 @@ Origin: Derived
 
 ### Cell Topics
 
+Cell topics are optional and may be supplied by a supplementary source. Source
+provenance remains attached to each normalized measurement before publication.
+Adding these optional topics is backward compatible and does not change MQTT
+API major version 1.
+
 #### `battery-gateway/<battery_id>/cells/<cell_index>/voltage`
 
 Type: float
@@ -467,6 +472,34 @@ Example: `3.351`
 Required: optional
 
 Origin: Derived
+
+#### `battery-gateway/<battery_id>/cells/min_voltage`
+
+Type: float
+
+Unit: Volt
+
+Meaning: Lowest valid voltage among the cells present in the current snapshot.
+
+Example: `3.331`
+
+Required: optional
+
+Origin: Measured cell selection
+
+#### `battery-gateway/<battery_id>/cells/max_voltage`
+
+Type: float
+
+Unit: Volt
+
+Meaning: Highest valid voltage among the cells present in the current snapshot.
+
+Example: `3.410`
+
+Required: optional
+
+Origin: Measured cell selection
 
 #### `battery-gateway/<battery_id>/cells/delta_voltage`
 
@@ -586,6 +619,21 @@ Required: optional
 Origin: Metadata
 
 ### Metadata Topics
+
+#### `battery-gateway/<battery_id>/meta/gateway_version`
+
+Type: string
+
+Unit: none
+
+Meaning: Battery Gateway software version read from the repository-root
+`VERSION` file. This is independent from the public MQTT API version.
+
+Example: `0.1.0`
+
+Required: yes
+
+Origin: Metadata
 
 #### `battery-gateway/<battery_id>/meta/manufacturer`
 

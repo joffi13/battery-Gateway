@@ -1,0 +1,24 @@
+[Unit]
+Description=Battery Gateway SocketCAN to MQTT
+Documentation=file:/home/michi/battery-gateway/docs/mqtt-topic-spec.md
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+User=michi
+Group=michi
+WorkingDirectory=/home/michi/battery-gateway
+ExecStart=/home/michi/battery-gateway/.venv/bin/python /home/michi/battery-gateway/gateway_service.py /home/michi/battery-gateway/config/production.toml
+Restart=always
+RestartSec=5
+TimeoutStopSec=15
+Environment=PYTHONUNBUFFERED=1
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=/home/michi/battery-gateway/logs
+
+[Install]
+WantedBy=multi-user.target

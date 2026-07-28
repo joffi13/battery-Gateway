@@ -15,7 +15,13 @@ env/
 logs/*.log
 logs/*.candump
 logs/*.txt
+logs/*.csv
+logs/*.out
+logs/status.json
 !logs/.gitkeep
+
+# Local deployment credentials
+config/production.toml
 
 # Editor and OS noise
 .DS_Store

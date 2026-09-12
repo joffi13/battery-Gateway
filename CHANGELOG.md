@@ -3,6 +3,19 @@
 All notable changes to Battery Gateway are recorded here. The project follows
 [Semantic Versioning](docs/versioning.md).
 
+## [Unreleased]
+
+### Documentation — 2026-09-12
+
+- Consolidated Seplos research through 12 September, with explicit evidence limits.
+- Added the 64-entry Windows/Android Function Switch mapping.
+- Recorded the already observed Windows 0x45 rejection on two firmware variants.
+- Distinguished BLE parameter-write success from unproven physical 10 A limiting.
+- Recorded original Android app slave reads and the bounded command-path audit.
+- Added dated evidence hashes and a safe continuation plan.
+- Documentation only: no runtime deployment, control enablement, release tag,
+  software version change, raw-capture upload, or vendor binary redistribution.
+
 ## [0.1.0]
 
 ### Added

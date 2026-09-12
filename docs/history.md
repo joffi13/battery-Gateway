@@ -1,3 +1,8 @@
+> Historical architecture record, retained unchanged below. For subsequent field
+> findings and the limits of the current control experiments, see
+> [12 September 2026](status/2026-09-12.md). Historical statements about production
+> services and Home Assistant roles must not be read as a fresh runtime audit.
+
 # Architecture History
 
 This document records why Battery Gateway exists and why its major architecture

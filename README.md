@@ -1,5 +1,24 @@
 # battery-gateway
 
+## Aktueller Wissensstand – 12. September 2026
+
+**Start here / Hier weiterlesen:** [Wissensstand und nächste Schritte](docs/status/2026-09-12.md).
+
+Die Forschung ist weiter als der veröffentlichte Laufzeitcode. Dieses Update
+dokumentiert die Seplos-RS485/BLE-Ergebnisse bis zum 12.09.2026, installiert aber
+keine neue Steuerung. Insbesondere sind direkte Charge-/Discharge-MOSFET-Befehle
+noch nicht erfolgreich nachgewiesen. Der aktive 10-A-Begrenzer wurde an einem
+Pack als gespeicherte Einstellung erfolgreich geschrieben und zurückgesetzt;
+seine elektrische Wirkung beim Laden ist noch zu prüfen.
+
+- [Seplos: Befunde und Protokollgrenzen](docs/protocols/seplos.md)
+- [Alle 64 Function Switches](docs/research/seplos-function-switches-2026-09-11.md)
+- [Versuchsfolge und Belegverzeichnis](docs/research/evidence-2026-09-12.md)
+
+Die nachfolgenden Projekt- und Betriebsbeschreibungen enthalten den bisherigen
+Entwicklungsstand. Sie sind kein Nachweis für die heutige Live-Konfiguration
+oder eine bereits einsatzfertige Leistungsregelung.
+
 `battery-gateway` is an experimental Python project for reading, decoding,
 replaying, and publishing battery/BMS data. The long-term goal is to support
 multiple BMS families such as Seplos, Batrium, JK, Pace, Daly, and others
